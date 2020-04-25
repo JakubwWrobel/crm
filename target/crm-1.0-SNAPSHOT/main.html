@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Main</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<section class="main">
+    <header>
+
+        <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+            <a class="navbar-brand" href="#"><img src="/img/samochod_71431-58.jpg" width="30" height="30"
+                                                  class="d-inline-block mr-1 align-bottom" alt=""> Warsztat</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainmenu">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> Start</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="submenuOrders"> Zamówienia </a>
+                        <div class="dropdown-menu">
+                            <a href="/createorder" class="dropdown-item"> Dodaj Zamówienia </a>
+                            <a href="/showallorders" class="dropdown-item"> Pokaż Wszystkie Zamówienia </a>
+                            <a href="/updateorder" class="dropdown-item"> Edytuj Zamówienie </a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" href="#" id="submenuClients" role="button"> Klienci</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/createclient"> Dodaj Klienta </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/showallclients"> Pokaż Wszystkich Klientów </a>
+                            <a class="dropdown-item" href="/updateclient"> Edytuj Klienta </a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="submenuCar" href="#" > Samochody </a>
+                        <div class="dropdown-menu" aria-labelledby="submenuCar">
+                            <a class="dropdown-item" href="/createcar" > Dodaj Samochód</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/showallcars"> Pokaż wszystkie samochody </a>
+                            <a class="dropdown-item" href="/updatecar"> Edytuj Samochód </a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                           aria-haspopup="true" id="submenuPracownik" href="#"> Pracownicy</a>
+
+                        <div class="dropdown-menu" aria-labelledby="submenuPracownik">
+
+                            <a href="/createemployee" class="dropdown-item" > Dodaj Pracownika </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a href="/showallemployees" class="dropdown-item mr-1"> Wyświetl Pracowników </a>
+                            <a href="/updateemployee" class="dropdown-item"> Edytuj Pracownika </a>
+                            <a href="/deleteemployee" class="dropdown-item"> Usuń Pracownika </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <form class="form-inline" id="searching">
+
+                    <input class="form-control" type="search" placeholder="Wyszukaj" aria-label="Search">
+                    <button class="btn btn-light" type="submit">Znajdź</button>
+
+                </form>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <figure>
+                        <a href="#"><img src="/img/car.jpg" alt="test"></a>
+                        <figcaption>TEST OBRAZU</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-4">
+                    <figure>
+                        <a href="#"><img src="/img/car.jpg" alt="test"></a>
+                        <figcaption>TEST OBRAZU</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-4">
+                    <figure>
+                        <a href="#"><img src="/img/car.jpg" alt="test"></a>
+                        <figcaption>TEST OBRAZU</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-4">
+                    <figure>
+                        <a href="#"><img src="/img/car.jpg" alt="test"></a>
+                        <figcaption>TEST OBRAZU</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+
+</section>
+</body>
+</html>

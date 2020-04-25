@@ -1,0 +1,77 @@
+body {
+    background-color: #2F3336;
+    color: #efefef;
+    font-family: 'Open Sans', 'sans-serif';
+    font-size: 17px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #c0D06F;
+    margin: 20px;
+
+}
+
+.main img {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.main figcaption {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.main {
+    text-align: center;
+}
+
+.navbar img {
+    width: auto;
+    height: auto;
+    margin: auto;
+}
+
+.navbar-nav li:hover > .dropdown-menu {
+    display: block;
+}
+
+/*Wielkośc navbar podczas zmniejszania*/
+.navbar {
+    min-height: auto;
+}
+
+#searching {
+    display: inline;
+    text-align: center;
+}
+
+/*FORM EDITNG*/
+
+.form div {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form {
+    margin-top: 10px;
+}
+
+/*TABLE DEFINTION*/
+
+.table {
+    margin: 20px;
+}
+
+.table tr{
+    text-align: center;
+}
+
+/*LIVE_SEARCHING_HELP*/
+
+.help-inline {
+    font-size: 75%;
+    color: #c8c935;
+}
