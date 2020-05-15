@@ -10,6 +10,7 @@ import model.Client;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,6 +41,8 @@ public class UpdateCar extends HttpServlet {
     private String dateNextCheckup;
     private int clientId;
     private String idNumber;
+    private static Date date;
+    private static Date date2;
     HttpSession session;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,11 +55,8 @@ public class UpdateCar extends HttpServlet {
             clientId = Integer.parseInt(request.getParameter("clientId"));
             session = request.getSession();
             check = (int) session.getAttribute("check");
-            //VALIDATION OF Phone
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = simpleDateFormat.parse(dateProduction);
-            Date date2 = simpleDateFormat.parse(dateNextCheckup);
-
+            date =Date.valueOf(dateProduction);
+            date2 =Date.valueOf(dateNextCheckup);
             clients = ClientDAO.read(clientId);
             client = clients.get(0);
 
@@ -82,8 +81,6 @@ public class UpdateCar extends HttpServlet {
             request.setAttribute("car", car);
             request.setAttribute("clients", clients);
             request.getRequestDispatcher("/jsp/car/updateCar2.jsp").forward(request, response);
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
     }
 

@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.sql.Date;
 
 @WebServlet(name = "UpdateClient", urlPatterns = "/updateclient")
 public class UpdateClient extends HttpServlet {
@@ -33,6 +33,7 @@ public class UpdateClient extends HttpServlet {
     private Integer id;
     private String check;
     private Client client;
+    private static Date date;
     HttpSession session;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,10 +43,7 @@ public class UpdateClient extends HttpServlet {
         try {
             session = request.getSession();
             id = (Integer) session.getAttribute("id");
-            //VALIDATION OF Phone
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = simpleDateFormat.parse(birthDate);
-
+            date = Date.valueOf(birthDate);
             Client client = new Client.Builder(firstName, lastName, date).build();
             client.setId(id);
             if (clientDAO.updateClient(client)) {
@@ -60,10 +58,7 @@ public class UpdateClient extends HttpServlet {
             error = ValidationDB.validation(e.getMessage());
             request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
             request.getRequestDispatcher("/jsp/client/updateClient2.jsp").forward(request, response);
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
-
 
     }
 

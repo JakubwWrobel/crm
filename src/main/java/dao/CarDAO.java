@@ -18,10 +18,14 @@ public class CarDAO {
     private static final String SHOW_ALL_CARS = "SELECT * FROM cars";
     private static final String FIND_CAR_BY_ID = "SELECT * FROM cars WHERE id = ?";
     private static final String UPDATE_CAR_BY_ID = "UPDATE cars SET model = ?, brand = ?, dateProduction = ?, nextCheckupDate = ?, clientId = ?, idNumber = ?  WHERE id = ?";
+    private static final String FIND_CAR_BY_IDNUMBER = "SELECT * FROM cars WHERE idNumber = ?";
+    private static final String CLIENTS_TO_NOTIFY = "SELECT * FROM cars WHERE nextCheckupDate BETWEEN NOW() and DATE_ADD(NOW(), INTERVAL 14 DAY)";
+
     private static PreparedStatement statement;
     private static List<Car> cars = new ArrayList<>();
     private static int clientId;
     private static List<Client> clients;
+    private static Client client;
 
 
     public boolean createCar(Car car) throws MyBusinessException {
@@ -111,8 +115,33 @@ public class CarDAO {
         return null;
     }
 
+    public static List<Car> readByIdNumber(String idNumber) {
+        try (Connection connection = DbUtil.getConnection()) {
+            cars.clear();
+            statement = connection.prepareStatement(FIND_CAR_BY_IDNUMBER);
+            statement.setString(1, idNumber);
+            ResultSet resultSet = statement.executeQuery();
+            Client client;
+            if (resultSet.next()) {
+                clientId = resultSet.getInt("clientId");
+                clients = ClientDAO.read(clientId);
+                client = clients.get(0);
+                Car car = new Car.Builder(resultSet.getString("model"), resultSet.getString("brand"), resultSet.getDate("dateProduction"), resultSet.getString("idNumber"), client).nextCheckupDate(resultSet.getDate("nextCheckupDate")).build();
+                car.setId(resultSet.getInt("id"));
+                cars.add(car);
+                return cars;
+            }
 
-    public boolean updateCar(Car car) throws MyBusinessException,  MySQLIntegrityConstraintViolationException {
+        } catch (SQLException e) {
+            e.getCause();
+            e.getMessage();
+            System.out.println("Błąd połączenia z bazą");
+        }
+        return null;
+    }
+
+
+    public boolean updateCar(Car car) throws MyBusinessException, MySQLIntegrityConstraintViolationException {
 
         try (Connection connection = DbUtil.getConnection()) {
             statement = connection.prepareStatement(UPDATE_CAR_BY_ID);
@@ -131,8 +160,8 @@ public class CarDAO {
             statement.setDate(4, nextSqlDate);
 
             statement.setInt(5, car.getClient().getId());
-            statement.setString(6 ,car.getIdNumber());
-            statement.setInt(7 ,car.getId());
+            statement.setString(6, car.getIdNumber());
+            statement.setInt(7, car.getId());
             statement.executeUpdate();
             return true;
 
@@ -144,5 +173,29 @@ public class CarDAO {
             return false;
         }
 
+    }
+
+    public static List<Car> nearCheckUpDateClients() {
+        try (Connection connection = DbUtil.getConnection()) {
+            cars.clear();
+            statement = connection.prepareStatement(CLIENTS_TO_NOTIFY);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                clientId = resultSet.getInt("clientId");
+                clients = ClientDAO.read(clientId);
+                client = clients.get(0);
+                Car car = new Car.Builder(resultSet.getString("model"), resultSet.getString("brand"), resultSet.getDate("dateProduction"), resultSet.getString("idNumber"), client).nextCheckupDate(resultSet.getDate("nextCheckupDate")).build();
+                car.setId(resultSet.getInt("id"));
+                cars.add(car);
+            }
+            return cars;
+
+        } catch (SQLException e) {
+            e.getCause();
+            e.getMessage();
+            System.out.println("Błąd połączenia z bazą");
+        }
+        return null;
     }
 }

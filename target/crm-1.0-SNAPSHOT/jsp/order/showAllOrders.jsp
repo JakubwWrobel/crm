@@ -23,7 +23,7 @@
 <header>
     <jsp:include page="/jsp/header.jsp"></jsp:include>
 </header>
-
+<%--https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_filters_table&stacked=h--%>
 <main>
     <c:set var="id" scope="request" value="${1}"/>
     <div class="row col-md-9">

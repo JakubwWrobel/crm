@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "UpdateOrder", urlPatterns = "/updateorder")
 public class UpdateOrder extends HttpServlet {
@@ -47,23 +48,35 @@ public class UpdateOrder extends HttpServlet {
     private double costOfItems;
     private double workhours;
     private double costOfRepair;
-    private LocalDate dateStartRepairL;
+    private LocalDate dateStartRepairL = LocalDate.of(0001, 01, 01);
     private int carId;
+    private String workhoursS;
+    private String costOfItemsS;
+    private int employeeAssigned;
+    private String dateReceived;
+    private LocalDate dateReceivedL;
+    private String plannedDateStartRepair;
+    private LocalDate plannedDateStartRepairL;
+    private String dateStartRepair;
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String dateReceived = request.getParameter("dateReceived");
-        LocalDate dateReceivedL = LocalDate.parse(dateReceived, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        dateReceived = request.getParameter("dateReceived");
+        dateReceivedL = LocalDate.parse(dateReceived, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        String plannedDateStartRepair = request.getParameter("plannedDateStartRepair");
-        LocalDate plannedDateStartRepairL = LocalDate.parse(plannedDateStartRepair, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        plannedDateStartRepair = request.getParameter("plannedDateStartRepair");
+        plannedDateStartRepairL = LocalDate.parse(plannedDateStartRepair, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        String dateStartRepair = request.getParameter("dateStartRepair");
-        dateStartRepairL = LocalDate.parse(dateStartRepair, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        dateStartRepair = request.getParameter("dateStartRepair");
+        dateStartRepairL = (dateStartRepair.isEmpty()) ? null : LocalDate.parse(dateStartRepair, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        costOfItems = Double.parseDouble(request.getParameter("costOfItems"));
-        workhours = Double.parseDouble(request.getParameter("workHours"));
+        costOfItemsS = request.getParameter("costOfItems");
+        costOfItems = (costOfItemsS.isEmpty()) || costOfItemsS == null ? null : Double.parseDouble(costOfItemsS);
+        
+        workhoursS = request.getParameter("workHours");
+        workhours = (workhoursS.isEmpty()) || workhoursS == null ? null : Double.parseDouble(workhoursS);
 
-        int employeeAssigned = Integer.parseInt(request.getParameter("employeeAssigned"));
+        employeeAssigned = Integer.parseInt(request.getParameter("employeeAssigned"));
         employees = EmployeeDAO.read(employeeAssigned);
         employee = employees.get(0);
         costOfHour = employee.getHourlyCost();
@@ -79,7 +92,7 @@ public class UpdateOrder extends HttpServlet {
 
         car = cars.get(0);
 
-        costOfRepair = costOfHour * workhours;
+        costOfRepair = costOfHour * workhours + costOfItems;
 
         try {
 
@@ -89,7 +102,7 @@ public class UpdateOrder extends HttpServlet {
 
             if (orderDAO.updateOrder(order)) {
                 request.setAttribute("message", "Zamówienie został zaaktualizowane");
-                request.getRequestDispatcher("/jsp/order/updateOrder.jsp").forward(request, response);
+                request.getRequestDispatcher("/jsp/order/updateOrder2.jsp").forward(request, response);
             }
             session.invalidate();
         } catch (MyBusinessException e) {

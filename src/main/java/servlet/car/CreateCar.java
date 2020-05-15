@@ -42,11 +42,11 @@ public class CreateCar extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            model = Objects.requireNonNull(request.getParameter("model"));
-            brand = Objects.requireNonNull(request.getParameter("brand"));
-            dateProduction = Objects.requireNonNull(request.getParameter("date"));
+            model = request.getParameter("model");
+            brand = request.getParameter("brand");
+            dateProduction = request.getParameter("date");
             dateNextCheckup = request.getParameter("date2");
-            idNumber = Objects.requireNonNull(request.getParameter("id"));
+            idNumber = request.getParameter("id");
             clientId = Integer.parseInt(request.getParameter("clientId"));
 
 

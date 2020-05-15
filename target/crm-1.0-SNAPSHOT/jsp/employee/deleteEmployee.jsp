@@ -27,10 +27,10 @@
 <main>
     <c:set var="id" scope="request" value="${1}"/>
     <div class="row col-md-9">
-        <table class="table table-striped table-bordered table-sm table-hover">
-            <tr class="table-row">
+        <table class="table table-striped table-bordered table-sm table-hover" id="tabDeleteEmployee">
+            <tr class="table-ro">
                 <th scope="col"> #</th>
-                <th scope="col"> ID </th>
+                <th scope="col"> ID</th>
                 <th scope="col">First name</th>
                 <th scope="col">Last name</th>
                 <th scope="col">Address</th>
@@ -39,46 +39,76 @@
             </tr>
 
             <c:forEach items="${employees}" var="employee">
-
-                <tr class="table-row" data-href="#confirm-delete">
+                <%--\showallemployees?id=${employee.id}--%>
+                <tr class="table-ro" data-target="#myModal" id="mydialog">
                     <th><c:out value="${id}"/></th>
                     <td>${employee.id}</td>
                     <td>${employee.firstName}</td>
                     <td>${employee.lastName}</td>
                     <td>${employee.address}</td>
                     <td>${employee.note}</td>
-                    <td><a href="#" data-record-id="${employee.id}" data-record-title="The first one" data-toggle="modal" data-target="#confirm-delete">
-                        Delete "The first one", #23
-                    </a></td>
+                    <td><a href="#" class="btn btn-primary btn-sm active" role="button" data-toggle="modal" data-target="#myModal" aria-pressed="true">Primary link</a></td>
                 </tr>
                 <c:set var="id" value="${id + 1}" scope="request"/>
             </c:forEach>
         </table>
     </div>
 
-    <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-    <div class="p-2" id="formResults"></div>
-
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="myModalLabel">Modal header</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal-body">
-                    <form id="myForm" method="post" action="${pageContext.request.contextPath}/createemployee">
-                        <input type="hidden" value="hello" id="myField" name="myField">
-                        <button id="myFormSubmit" class="btn" type="submit">Submit</button>
-                    </form>
+                <div class="modal-body" id="employeeDelete">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                    <button type="button" id="yesButton" class="btn btn-secondary">Yes</button>
                 </div>
             </div>
         </div>
     </div>
+
+<%--    <script>
+        $('#sumb2').on('click', function (e) {
+            //preventDefault anuluje zatwierdzenie form oraz dodatkowoych akcji
+            let ss = ${employee.id}
+                console.log(e)
+            e.preventDefault();
+            bs4pop.confirm('Are you sure to delete that employee?', function (sure) {
+            }, {
+                title: 'Confirmation Dialog',
+                hideRemove: true,
+                btns: [
+                    {
+                        label: 'OK',
+                        onClick(cb) {
+                            let vat = "/deleteemployee?id=${employee.id}"
+                            //e.target instead of vat
+                            return location.href = e.target
+                        }
+                    },
+                    {
+                        label: 'CANCEL',
+                        className: 'btn-secondary',
+                        onClick(cb) {
+                            return e.preventDefault();
+                        }
+                    }
+                ]
+            })
+        })
+    </script>--%>
+
+    <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" data-target="\update" checked> Active
+    </label>
+
+
 </main>
 
 </body>

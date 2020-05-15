@@ -66,5 +66,5 @@ globalna inicjacja logera
 
 SPRÓBOWAĆ:
 CREATA CAR co wyrzuca Object.requireNonNull()
-
+CZY W ORDER DAO dają carId czy carIdNumber jako referencje
 * */

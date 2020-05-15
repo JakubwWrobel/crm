@@ -48,9 +48,9 @@
                 <label for="idNumber"> Podaj Numer Rejestracyjny</label>
                 <input type="text" class="form-control" id="idNumber" name="idNumber" value="${fn:escapeXml(car.idNumber)}"required>
             </div>
-           <div class="form-group col-md-3">
+           <div class="form-group col-md-3" id="datapicker">
                 <label for="date2"> Podaj Datę Następnego Przeglądu </label>
-                <input type="date" class="form-control" id="date2" name="date2" value="${fn:escapeXml(car.nextCheckupDate)}" >
+                <input data-date-format="dd-mm-yyyy" type="date" class="form-control" id="date2" name="date2" value="${fn:escapeXml(car.nextCheckupDate)}" >
             </div>
             <div class="form-group col-md-3">
                 <label for="clientId"> Wybierz Klienta </label>
@@ -71,7 +71,6 @@
             <div class="form-group col-md-2">${empty message ? "" : message}</div>
         </div>
     </form>
-
 </main>
 </body>
 </html>

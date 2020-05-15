@@ -34,10 +34,10 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Start</a>
+                    <a class="nav-link" href="http://localhost:8080/"> Start</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="order">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="submenuOrders"> Zamówienia </a>
                     <div class="dropdown-menu">
                         <a href="/createorder" class="dropdown-item"> Dodaj Zamówienia </a>
@@ -46,7 +46,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="client">
                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" href="#" id="submenuClients" role="button"> Klienci</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="/createclient"> Dodaj Klienta </a>
@@ -57,7 +57,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="cars">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="submenuCar" href="#" > Samochody </a>
                     <div class="dropdown-menu" aria-labelledby="submenuCar">
                         <a class="dropdown-item" href="/createcar" > Dodaj Samochód</a>
@@ -67,7 +67,7 @@
                     </div>
 
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="employee">
 
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
                        aria-haspopup="true" id="submenuPracownik" href="#"> Pracownicy</a>

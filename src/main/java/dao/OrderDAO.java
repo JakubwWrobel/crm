@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class OrderDAO {
     private static final String CREATE_ORDER = "insert into orders (dateReceived, plannedDateStartRepair, employeeAssigned,costOfHour, problemDes,\n" +
             "                    status, car )\n" +
@@ -35,10 +34,14 @@ public class OrderDAO {
     private static LocalDate plannedDateStartRepairL;
     private static LocalDate dateStartRepairL;
     private static Status status;
-    private static int carS;
+    private static String carS;
     private static String statusS;
     private static Car car;
     private static int employeeId;
+    private static double costOfHour;
+    private static double costOfItems;
+    private static double costRepair;
+    private static double workHours;
 
 
     public boolean createOrder(Order order) throws MyBusinessException {
@@ -52,10 +55,6 @@ public class OrderDAO {
             LocalDate plannedDateStartRepairL = order.getPlannedDateStartRepair();
             plannedDateStartRepair = Date.valueOf(plannedDateStartRepairL);
             statement.setDate(2, plannedDateStartRepair);
-
-/*            LocalDate dateStartRepairL = order.getDateReceived();
-            dateStartRepair = Date.valueOf(dateStartRepairL);
-            statement.setDate(3, dateStartRepair);*/
 //          ZROBIĆ CHECKA!!
             employee = order.getEmployeeAssigned();
 
@@ -63,7 +62,6 @@ public class OrderDAO {
             statement.setLong(4, employee.getHourlyCost());
 
             statement.setString(5, order.getProblemDes());
-//            statement.setString(6, order.getResolutionDes());
 //DOUBLE CHECK!!!!!
             String statusS = order.getStatus().toString();
             String status = Status.valueOf(statusS).toString();
@@ -104,8 +102,7 @@ public class OrderDAO {
             plannedDateStartRepair = Date.valueOf(plannedDateStartRepairL);
             statement.setDate(2, plannedDateStartRepair);
 
-            LocalDate dateStartRepairL = order.getDateStartRepair();
-            dateStartRepair = Date.valueOf(dateStartRepairL);
+            dateStartRepair = (order.getDateStartRepair() == null) ? null : Date.valueOf(order.getDateStartRepair());
             statement.setDate(3, dateStartRepair);
 
 //          ZROBIĆ CHECKA!!
@@ -150,15 +147,19 @@ public class OrderDAO {
                 dateStartRepairL = resultSet.getObject("dateStartRepair", LocalDate.class);
                 statusS = resultSet.getString("status");
                 status = Status.valueOf(statusS);
-                carS = Integer.parseInt(resultSet.getString("car"));
-                cars = CarDAO.read(carS);
+                carS = resultSet.getString("car");
+                cars = CarDAO.readByIdNumber(carS);
                 car = cars.get(0);
                 employeeId = resultSet.getInt("employeeAssigned");
                 employees = EmployeeDAO.read(employeeId);
                 employee = employees.get(0);
+                costOfHour = resultSet.getDouble("costOfHour");
+                costOfItems = resultSet.getDouble("costOfItems");
+                workHours = resultSet.getDouble("workHours");
+                costRepair = costOfHour * workHours + costOfItems;
 
                 Order order = new Order.Builder(dateReceivedL, plannedDateStartRepairL, resultSet.getString("problemDes"), status, car, employee).
-                        costOfHour(resultSet.getLong("costOfHour")).costOfItems(resultSet.getLong("costOfItems")).costRepair(resultSet.getLong("costRepair")).resolutionDes(resultSet.getString("resolutionDes")).workHours(resultSet.getLong("workHours")).dateStartRepair(dateStartRepairL).build();
+                        costOfHour(costOfHour).costOfItems(costOfItems).costRepair(costRepair).resolutionDes(resultSet.getString("resolutionDes")).workHours(workHours).dateStartRepair(dateStartRepairL).build();
                 order.setId(resultSet.getInt("id"));
                 orders.add(order);
 
@@ -186,15 +187,19 @@ public class OrderDAO {
                 dateStartRepairL = resultSet.getObject("dateStartRepair", LocalDate.class);
                 statusS = resultSet.getString("status");
                 status = Status.valueOf(statusS);
-                carS = Integer.parseInt(resultSet.getString("car"));
-                cars = CarDAO.read(carS);
+                carS = resultSet.getString("car");
+                cars = CarDAO.readByIdNumber(carS);
                 car = cars.get(0);
                 employeeId = resultSet.getInt("employeeAssigned");
                 employees = EmployeeDAO.read(employeeId);
                 employee = employees.get(0);
+                costOfHour = resultSet.getDouble("costOfHour");
+                costOfItems = resultSet.getDouble("costOfItems");
+                workHours = resultSet.getDouble("workHours");
+                costRepair = costOfHour * workHours + costOfItems;
 
                 Order order = new Order.Builder(dateReceivedL, plannedDateStartRepairL, resultSet.getString("problemDes"), status, car, employee).
-                        costOfHour(resultSet.getLong("costOfHour")).costOfItems(resultSet.getLong("costOfItems")).costRepair(resultSet.getLong("costRepair")).resolutionDes(resultSet.getString("resolutionDes")).workHours(resultSet.getLong("workHours")).dateStartRepair(dateStartRepairL).build();
+                        costOfHour(costOfHour).costOfItems(costOfItems).costRepair(costRepair).resolutionDes(resultSet.getString("resolutionDes")).workHours(workHours).dateStartRepair(dateStartRepairL).build();
                 order.setId(resultSet.getLong("id"));
                 orders.add(order);
                 return orders;

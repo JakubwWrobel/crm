@@ -2,10 +2,7 @@ package servlet.client;
 
 import additionals.MyBusinessException;
 import additionals.ValidationDB;
-import checkers.units.quals.C;
-import dao.CarDAO;
 import dao.ClientDAO;
-import model.Car;
 import model.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @WebServlet(name = "CreateClient", urlPatterns = "/createclient")
 public class CreateClient extends HttpServlet {
@@ -30,6 +24,7 @@ public class CreateClient extends HttpServlet {
     private String firstName;
     private String lastName;
     private String birthDate;
+    private static Date date;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          firstName = request.getParameter("firstName");
@@ -37,9 +32,7 @@ public class CreateClient extends HttpServlet {
          birthDate = request.getParameter("birthDate");
 
         try {
-        //VALIDATION OF Phone
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = simpleDateFormat.parse(birthDate);
+            date = Date.valueOf(birthDate);
 
             Client client = new Client.Builder(firstName, lastName, date).build();
 
@@ -54,8 +47,6 @@ public class CreateClient extends HttpServlet {
             error = ValidationDB.validation(e.getMessage());
             request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
             request.getRequestDispatcher("/jsp/employee/createEmployee.jsp").forward(request, response);
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
     }
 

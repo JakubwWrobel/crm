@@ -43,7 +43,7 @@
         <div class="form-row">
             <div class="form-group col-md-6 offset-10">
                 <label for="note"> Dodatkowe Informacje </label>
-                <input type="text" class="form-control" id="note" name="note" required>
+                <input type="text" class="form-control" id="note" name="note">
             </div>
             <div class="form-group col-md-3">
                 <label for="phone"> Numer Telefonu </label>

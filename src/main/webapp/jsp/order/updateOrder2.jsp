@@ -44,7 +44,7 @@
                 <label for="car"> Wybierz Samochód </label>
                 <select class="form-control" id="car" name="car" data-live-search="true" required>
                     <c:forEach items="${cars}" var="car">
-                        <option><c:out value="${car.idNumber}"></c:out></option>
+                        <option value="${car.id}">${car.idNumber}</option>
                     </c:forEach>
                 </select>
                 <span class="help-inline">Start typing to find a car</span>
@@ -57,7 +57,8 @@
                 <select class="form-control" id="employeeAssigned" name="employeeAssigned" data-live-search="true"
                         required>
                     <c:forEach items="${employees}" var="employee">
-                        <option value="${employee.id}"><c:out value="${employee.firstName} ${employee.lastName}"></c:out></option>
+                        <option value="${employee.id}"><c:out
+                                value="${employee.firstName} ${employee.lastName}"></c:out></option>
                     </c:forEach>
                 </select>
                 <span class="help-inline">Start typing to find an employee</span>
@@ -94,23 +95,18 @@
 
             <div class="form-group col-md-3">
                 <label for="costOfItems">Koszt Części</label>
-                <input type="number" class="form-control"  step="0.01"  id="costOfItems" name="costOfItems"
+                <input type="number" class="form-control" step="0.01" placeholder='0.00' id="costOfItems"
+                       name="costOfItems"
                        value="${fn:escapeXml(order.costOfItems)}">
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group" col-md-3>
+            <div class="form-row col-md-3">
                 <label for="workHours">Ilośc godzin pracy</label>
-                <input class="form-control" id="workHours" name="workHours"  step="0.01"  type="number"
-                       value="${fn:escapeXml(order.workHours)}">
+                <input class="form-control" id="workHours" name="workHours" step="0.01" type="number" value="${fn:escapeXml(order.workHours)}">
             </div>
         </div>
-        <%--
-                //   (dateReceived, plannedDateStartRepair, dateStartRepair, employeeAssigned, problemDes,  costRepair, costOfItems, workHours, costOfHour)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-        --%>
-
-
-        <div class="form-row">
+        <div class="form-row mt-4">
             <div class="form-group col-md-2">
                 <button class="btn btn-primary" type="submit"> Submit form</button>
             </div>
