@@ -35,6 +35,7 @@
                 <th scope="col">Last name</th>
                 <th scope="col">Address</th>
                 <th scope="col">Note</th>
+                <th scope="col">Hourly Cost</th>
                 <th scope="col">Delete</th>
             </tr>
 
@@ -47,14 +48,20 @@
                     <td>${employee.lastName}</td>
                     <td>${employee.address}</td>
                     <td>${employee.note}</td>
-                    <td><a href="#" class="btn btn-primary btn-sm active" role="button" data-toggle="modal" data-target="#myModal" aria-pressed="true">Primary link</a></td>
+                    <td>${employee.hourlyCost}</td>
+                    <td><a href="#" class="btn btn-primary btn-sm active" role="button" data-toggle="modal"
+                           data-target="#myModal" id="deleteBtn">delete</a></td>
                 </tr>
                 <c:set var="id" value="${id + 1}" scope="request"/>
             </c:forEach>
         </table>
+        <div id="displayName" class="row col-md-9">
+
+        </div>
     </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,50 +70,47 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="employeeDelete">
+                <div class="modal-body" id="deleteModalBody">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                    <button type="button" id="yesButton" class="btn btn-secondary">Yes</button>
+                    <button type="button" id="yesButton" data-dismiss="modal" class="btn btn-secondary">Yes</button>
                 </div>
             </div>
         </div>
     </div>
 
-<%--    <script>
-        $('#sumb2').on('click', function (e) {
-            //preventDefault anuluje zatwierdzenie form oraz dodatkowoych akcji
-            let ss = ${employee.id}
-                console.log(e)
-            e.preventDefault();
-            bs4pop.confirm('Are you sure to delete that employee?', function (sure) {
-            }, {
-                title: 'Confirmation Dialog',
-                hideRemove: true,
-                btns: [
-                    {
-                        label: 'OK',
-                        onClick(cb) {
-                            let vat = "/deleteemployee?id=${employee.id}"
-                            //e.target instead of vat
-                            return location.href = e.target
-                        }
-                    },
-                    {
-                        label: 'CANCEL',
-                        className: 'btn-secondary',
-                        onClick(cb) {
-                            return e.preventDefault();
-                        }
-                    }
-                ]
-            })
-        })
-    </script>--%>
 
-    <label class="btn btn-secondary active">
-        <input type="radio" name="options" id="option1" autocomplete="off" data-target="\update" checked> Active
-    </label>
+    <%--    <script>
+            $('#sumb2').on('click', function (e) {
+                //preventDefault anuluje zatwierdzenie form oraz dodatkowoych akcji
+                let ss = ${employee.id}
+                    console.log(e)
+                e.preventDefault();
+                bs4pop.confirm('Are you sure to delete that employee?', function (sure) {
+                }, {
+                    title: 'Confirmation Dialog',
+                    hideRemove: true,
+                    btns: [
+                        {
+                            label: 'OK',
+                            onClick(cb) {
+                                let vat = "/deleteemployee?id=${employee.id}"
+                                //e.target instead of vat
+                                return location.href = e.target
+                            }
+                        },
+                        {
+                            label: 'CANCEL',
+                            className: 'btn-secondary',
+                            onClick(cb) {
+                                return e.preventDefault();
+                            }
+                        }
+                    ]
+                })
+            })
+        </script>--%>
 
 
 </main>

@@ -16,6 +16,8 @@ public class EmployeeDAO {
     private static final String SHOW_ALL_EMPLOYEES = "SELECT * FROM employees";
     private static final String FIND_EMPLOYEE_BY_ID = "SELECT * FROM employees WHERE id = ?";
     private static final String UPDATE_EMPLOYEE_BY_ID = "UPDATE employees SET firstName = ?, lastName = ?, address = ?, telNumber = ?, note = ?, hourlyCost = ? WHERE id = ?";
+    private static final String DELETE_EMPLOYEE_BY_ID = "DELETE FROM employees WHERE id = ?";
+    private static final String PUT_ALL_ORDERS_TO_FINISHED = "UPDATE orders SET status = 'DONE', employeeAssigned = 1 WHERE employeeAssigned = ?";
     private static PreparedStatement statement;
     private static List<Employee> employees = new ArrayList<>();
 
@@ -116,5 +118,27 @@ public class EmployeeDAO {
             return false;
         }
 
+    }
+
+    public static boolean deleteEmployee(Employee employee) {
+        try (Connection connection = DbUtil.getConnection()) {
+
+            //UPDATE ALL orders TO OWNER(ID=1)
+            statement = connection.prepareStatement(PUT_ALL_ORDERS_TO_FINISHED);
+            statement.setInt(1, employee.getId());
+            statement.executeUpdate();
+            //DELETE EMPLOYEE
+            statement = connection.prepareStatement(DELETE_EMPLOYEE_BY_ID);
+            statement.setInt(1, employee.getId());
+            statement.executeUpdate();
+            return true;
+
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

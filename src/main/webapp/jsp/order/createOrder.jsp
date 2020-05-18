@@ -72,6 +72,7 @@
                         <option value="COST_APPROVED"> Koszty zaakceptowane </option>
                         <option value="READY_TO_PICK"> Gotowe do odbioru </option>
                         <option value="RESIGNED"> Klient zrezygnował </option>
+                        <option value="DONE"> Zlecenie wykonane </option>
 
                 </select>
             </div>

@@ -2,7 +2,6 @@ package servlet.order;
 
 import additionals.MyBusinessException;
 import additionals.ValidationDB;
-import checkers.oigj.quals.O;
 import dao.CarDAO;
 import dao.EmployeeDAO;
 import dao.OrderDAO;
@@ -19,13 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "CreateOrder", urlPatterns = "/createorder")

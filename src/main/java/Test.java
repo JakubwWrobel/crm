@@ -3,13 +3,15 @@ import additionals.TestConnection;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import dao.EmployeeDAO;
 import model.Employee;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class Test {
     private  static EmployeeDAO employeeDAO = new EmployeeDAO();

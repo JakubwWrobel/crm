@@ -53,6 +53,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/showallclients"> Pokaż Wszystkich Klientów </a>
                         <a class="dropdown-item" href="/updateclient"> Edytuj Klienta </a>
+                        <a class="dropdown-item" href="/deleteclient"> Usuń Klienta </a>
 
                     </div>
                 </li>

@@ -4,7 +4,6 @@ package dao;
 import additionals.DbUtil;
 import additionals.MyBusinessException;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-import model.Car;
 import model.Client;
 
 import java.sql.*;
@@ -17,9 +16,9 @@ public class ClientDAO {
     private static final String SHOW_ALL_CLIENTS = "SELECT * FROM clients";
     private static final String FIND_CLIENTS_BY_ID = "SELECT * FROM clients WHERE id = ?";
     private static final String UPDATE_CLIENT_BY_ID = "update clients set firstName = ?, lastName = ?, birthDate = ? WHERE id = ?";
+    private static final String DELETE_CLIENT_BY_ID = "DELETE FROM clients WHERE id = ?";
     private static PreparedStatement statement;
     private static List<Client> clients = new ArrayList<>();
-
 
     public boolean createClient(Client client) throws MyBusinessException {
         try (Connection connection = DbUtil.getConnection()) {
@@ -115,7 +114,22 @@ public class ClientDAO {
         }
         return null;
     }
+    public static boolean deleteClient(Client client) {
+        try (Connection connection = DbUtil.getConnection()) {
+            //DELETE EMPLOYEE
+            statement = connection.prepareStatement(DELETE_CLIENT_BY_ID);
+            statement.setInt(1, client.getId());
+            statement.executeUpdate();
+            return true;
 
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 

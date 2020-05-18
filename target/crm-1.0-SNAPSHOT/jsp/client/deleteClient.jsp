@@ -16,10 +16,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
-    <title>Delete Employee</title>
+    <title>Delete Client</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 </head>
-<body id="employee">
+<body id="client">
 <header>
     <jsp:include page="/jsp/header.jsp"></jsp:include>
 </header>
@@ -27,45 +27,37 @@
 <main>
     <c:set var="id" scope="request" value="${1}"/>
     <div class="row col-md-9">
-        <table class="table table-striped table-bordered table-sm table-hover" id="tabDeleteEmployee">
+        <table class="table table-striped table-bordered table-sm table-hover">
             <tr class="table-ro">
                 <th scope="col"> #</th>
                 <th scope="col"> ID</th>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Note</th>
-                <th scope="col">Hourly Cost</th>
-                <th scope="col">Delete</th>
+                <th scope="col"> First Name</th>
+                <th scope="col"> Last Name</th>
+                <th scope="col"> Birth Date</th>
+                <th scope="col"> Delete</th>
             </tr>
 
-            <c:forEach items="${employees}" var="employee">
-                <%--\showallemployees?id=${employee.id}--%>
-                <tr class="table-ro" data-target="#myModal" id="mydialog">
+            <c:forEach items="${clients}" var="client">
+
+                <tr class="table-ro" data-href="\showallclients?id=${client.id}">
                     <th><c:out value="${id}"/></th>
-                    <td>${employee.id}</td>
-                    <td>${employee.firstName}</td>
-                    <td>${employee.lastName}</td>
-                    <td>${employee.address}</td>
-                    <td>${employee.note}</td>
-                    <td>${employee.hourlyCost}</td>
+                    <td>${client.id}</td>
+                    <td>${client.firstName}</td>
+                    <td>${client.lastName}</td>
+                    <td>${client.birthDate}</td>
                     <td><a href="#" class="btn btn-primary btn-sm active" role="button" data-toggle="modal"
                            data-target="#myModal" id="deleteBtn">delete</a></td>
                 </tr>
                 <c:set var="id" value="${id + 1}" scope="request"/>
             </c:forEach>
         </table>
-        <div id="displayName" class="row col-md-9">
-
-        </div>
     </div>
-
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Client</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -79,44 +71,7 @@
             </div>
         </div>
     </div>
-
-
-    <%--    <script>
-            $('#sumb2').on('click', function (e) {
-                //preventDefault anuluje zatwierdzenie form oraz dodatkowoych akcji
-                let ss = ${employee.id}
-                    console.log(e)
-                e.preventDefault();
-                bs4pop.confirm('Are you sure to delete that employee?', function (sure) {
-                }, {
-                    title: 'Confirmation Dialog',
-                    hideRemove: true,
-                    btns: [
-                        {
-                            label: 'OK',
-                            onClick(cb) {
-                                let vat = "/deleteemployee?id=${employee.id}"
-                                //e.target instead of vat
-                                return location.href = e.target
-                            }
-                        },
-                        {
-                            label: 'CANCEL',
-                            className: 'btn-secondary',
-                            onClick(cb) {
-                                return e.preventDefault();
-                            }
-                        }
-                    ]
-                })
-            })
-        </script>--%>
-
-
 </main>
 
 </body>
 </html>
-
-
-<%--https://www.codeply.com/go/tKcuKpAfc3--%>

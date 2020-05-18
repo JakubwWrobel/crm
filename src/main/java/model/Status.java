@@ -4,7 +4,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 
 public enum Status {
-    RECEIVED, COST_APPROVED, INPROGRESS, READY_TO_PICK, RESIGNED;
+    RECEIVED, COST_APPROVED, INPROGRESS, READY_TO_PICK, RESIGNED, DONE;
 
     public static HashSet<String> getStatuses() {
         HashSet<String> statuses = new HashSet<String>();
