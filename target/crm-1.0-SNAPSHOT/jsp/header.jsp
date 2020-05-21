@@ -65,6 +65,8 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/showallcars"> Pokaż wszystkie samochody </a>
                         <a class="dropdown-item" href="/updatecar"> Edytuj Samochód </a>
+                        <a class="dropdown-item" href="/deletecar"> Usuń Samochód </a>
+
                     </div>
 
                 </li>

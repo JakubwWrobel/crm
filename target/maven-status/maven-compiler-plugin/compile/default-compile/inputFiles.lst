@@ -1,4 +1,5 @@
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/model/Employee.java
+/home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/car/DeleteCar.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/ValidationDB.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/Email.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/dao/OrderDAO.java
@@ -6,9 +7,11 @@
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/MyBusinessException.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/order/CreateOrder.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/employee/DeleteEmployee.java
+/home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/Communication.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/model/Client.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/DbUtil.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/car/CreateCar.java
+/home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/client/DeleteClient.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/order/UpdateOrder.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/Test.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/model/Car.java

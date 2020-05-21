@@ -17,6 +17,11 @@ public class ClientDAO {
     private static final String FIND_CLIENTS_BY_ID = "SELECT * FROM clients WHERE id = ?";
     private static final String UPDATE_CLIENT_BY_ID = "update clients set firstName = ?, lastName = ?, birthDate = ? WHERE id = ?";
     private static final String DELETE_CLIENT_BY_ID = "DELETE FROM clients WHERE id = ?";
+    private static final String DELETE_CLIENTS_CAR = "DELETE FROM cars WHERE clientId = ?";
+    private static final String ALL_CLIENT_ORDERS= "SELECT o.* FROM orders o\n" +
+            "JOIN cars c ON c.idNumber = o.car\n" +
+            "JOIN clients c2 ON c.clientId = c2.id\n" +
+            "WHERE c2.id = ?";
     private static PreparedStatement statement;
     private static List<Client> clients = new ArrayList<>();
 
@@ -114,8 +119,13 @@ public class ClientDAO {
         }
         return null;
     }
+
     public static boolean deleteClient(Client client) {
         try (Connection connection = DbUtil.getConnection()) {
+            //DELETE CARS
+            statement = connection.prepareStatement(DELETE_CLIENTS_CAR);
+            statement.setInt(1, client.getId());
+            statement.executeUpdate();
             //DELETE EMPLOYEE
             statement = connection.prepareStatement(DELETE_CLIENT_BY_ID);
             statement.setInt(1, client.getId());
@@ -125,12 +135,34 @@ public class ClientDAO {
         } catch (MySQLIntegrityConstraintViolationException e) {
             e.printStackTrace();
             return false;
+        } catch (NoClassDefFoundError e) {
+            System.out.println("test");
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
 
+    public static boolean validationClientOrders(Client client) {
+        try (Connection connection = DbUtil.getConnection()) {
+            //DELETE EMPLOYEE
+            statement = connection.prepareStatement(ALL_CLIENT_ORDERS);
+            statement.setInt(1, client.getId());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+            return false;
+
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 }

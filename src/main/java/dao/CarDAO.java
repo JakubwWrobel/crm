@@ -20,12 +20,32 @@ public class CarDAO {
     private static final String UPDATE_CAR_BY_ID = "UPDATE cars SET model = ?, brand = ?, dateProduction = ?, nextCheckupDate = ?, clientId = ?, idNumber = ?  WHERE id = ?";
     private static final String FIND_CAR_BY_IDNUMBER = "SELECT * FROM cars WHERE idNumber = ?";
     private static final String CLIENTS_TO_NOTIFY = "SELECT * FROM cars WHERE nextCheckupDate BETWEEN NOW() and DATE_ADD(NOW(), INTERVAL 14 DAY)";
+    private static final String ALL_ORDERS_TO_CAR = "SELECT * FROM orders WHERE car = ?";
+    private static final String DELETE_CAR_BY_ID = "DELETE FROM cars WHERE idNumber = ?";
 
     private static PreparedStatement statement;
     private static List<Car> cars = new ArrayList<>();
     private static int clientId;
     private static List<Client> clients;
     private static Client client;
+
+    public static boolean deleteCar(Car car) {
+        try (Connection connection = DbUtil.getConnection()) {
+            statement = connection.prepareStatement(DELETE_CAR_BY_ID);
+            statement.setString(1, car.getIdNumber());
+            statement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.getCause();
+            e.getMessage();
+            System.out.println("Błąd połączenia z bazą");
+            return false;
+
+        }
+
+    }
 
 
     public boolean createCar(Car car) throws MyBusinessException {
@@ -197,5 +217,26 @@ public class CarDAO {
             System.out.println("Błąd połączenia z bazą");
         }
         return null;
+    }
+
+    public static boolean validationCarOrder(Car car) {
+        try (Connection connection = DbUtil.getConnection()) {
+            cars.clear();
+            statement = connection.prepareStatement(ALL_ORDERS_TO_CAR);
+            statement.setString(1, car.getIdNumber());
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+            return false;
+
+        } catch (SQLException e) {
+            e.getCause();
+            e.getMessage();
+            System.out.println("Błąd połączenia z bazą");
+            return false;
+
+        }
     }
 }

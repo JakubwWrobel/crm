@@ -1,10 +1,10 @@
-package servlet.client;
+package servlet.car;
 
 import additionals.Communication;
+import dao.CarDAO;
 import dao.ClientDAO;
-import dao.EmployeeDAO;
+import model.Car;
 import model.Client;
-import model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,27 +17,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "DeleteClient", urlPatterns = "/deleteclient")
-public class DeleteClient extends HttpServlet {
-    private Integer id = null;
+@WebServlet(name = "DeleteCar", urlPatterns = "/deletecar")
+public class DeleteCar extends HttpServlet {
+    private List<Car> cars = new ArrayList<>();
+    private String id = null;
     private List<Client> clients = new ArrayList<>();
     private Map<String, Object> map = new HashMap<>();
-    private Client client;
+    private Car car;
     boolean isValid = false;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.flushBuffer();
-
-        int id = Integer.parseInt(request.getParameter("id")); // this is your data sent from client
+        id = request.getParameter("id"); // this is your data sent from client
         map.clear();
         isValid = false;
-        clients = ClientDAO.read(id);
-        client = clients.get(0);
-        if (ClientDAO.validationClientOrders(client)) {
-
+        cars = CarDAO.readByIdNumber(id);
+        car = cars.get(0);
+        if (CarDAO.validationCarOrder(car)) {
             isValid = false;
-//            map.put()
-        } else if (ClientDAO.deleteClient(client)) {
+        } else if (CarDAO.deleteCar(car)) {
             isValid = true;
             map.put("id", id);
         }
@@ -46,9 +44,10 @@ public class DeleteClient extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        clients = ClientDAO.allClients();
-        request.setAttribute("clients", clients);
-        request.getRequestDispatcher("/jsp/client/deleteClient.jsp").forward(request, response);
+
+        cars = CarDAO.allCars();
+        request.setAttribute("cars", cars);
+        request.getRequestDispatcher("/jsp/car/deleteCar.jsp").forward(request, response);
 
     }
 }

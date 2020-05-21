@@ -3,6 +3,7 @@ additionals/Email.class
 model/Car$1.class
 model/Car$Builder.class
 servlet/order/UpdateOrder.class
+servlet/car/DeleteCar.class
 model/Employee$Builder.class
 model/Client$1.class
 additionals/LanguageEncoding.class
@@ -10,8 +11,10 @@ dao/OrderDAO.class
 reports/EmailNotification.class
 additionals/TestMail.class
 servlet/order/ShowAllOrders.class
+servlet/client/DeleteClient.class
 additionals/TestConnection.class
 additionals/DbUtil.class
+additionals/Communication.class
 additionals/ValidationDB.class
 servlet/employee/UpdateEmployee.class
 servlet/car/CreateCar.class

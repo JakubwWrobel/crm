@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,21 +39,20 @@ public class CreateCar extends HttpServlet {
     private String dateNextCheckup;
     private String idNumber;
     private int clientId;
+    private static java.sql.Date date;
+    private static java.sql.Date date2;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             model = request.getParameter("model");
             brand = request.getParameter("brand");
-            dateProduction = request.getParameter("date");
+            dateProduction = Objects.requireNonNull(request.getParameter("date"));
             dateNextCheckup = request.getParameter("date2");
             idNumber = request.getParameter("id");
             clientId = Integer.parseInt(request.getParameter("clientId"));
 
-
-            //VALIDATION OF Phone
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = simpleDateFormat.parse(dateProduction);
-            Date date2 = simpleDateFormat.parse(dateNextCheckup);
+            date = java.sql.Date.valueOf(dateProduction);
+            date2 = java.sql.Date.valueOf(dateNextCheckup);
             clients = ClientDAO.read(clientId);
             client = clients.get(0);
 
@@ -64,14 +63,11 @@ public class CreateCar extends HttpServlet {
                 request.getRequestDispatcher("/jsp/car/createCar.jsp").forward(request, response);
             }
 
-
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
             request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
             request.getRequestDispatcher("/jsp/car/createCar.jsp").forward(request, response);
-        } catch (ParseException e) {
-            e.printStackTrace();
         } catch (NullPointerException e) {
         //SPRAWDZIĆ JAK WYWALA BŁĄD?
         }

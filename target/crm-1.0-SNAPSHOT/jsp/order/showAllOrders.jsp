@@ -35,6 +35,7 @@
                 <th scope="col">Planned Start Date </th>
                 <th scope="col">Repair Start Date</th>
                 <th scope="col">Car</th>
+                <th scope="col">Client</th>
                 <th scope="col">Employee Assigned</th>
                 <th scope="col">Problem Description</th>
                 <th scope="col">Status</th>
@@ -53,6 +54,7 @@
                     <td>${order.plannedDateStartRepair}</td>
                     <td>${order.dateStartRepair}</td>
                     <td>${order.car.idNumber}</td>
+                    <td>${order.car.client.firstName} ${order.car.client.lastName}</td>
                     <td>${order.employeeAssigned.id}</td>
                     <td>${order.problemDes}</td>
                     <td>${order.status.name()}</td>

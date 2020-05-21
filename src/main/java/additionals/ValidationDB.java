@@ -1,6 +1,7 @@
 package additionals;
 
 import javafx.css.Match;
+import model.Client;
 import model.Status;
 
 import java.util.HashSet;
@@ -45,5 +46,7 @@ public class ValidationDB {
         }
         return -1;
     }
+
+
 
 }

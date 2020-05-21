@@ -25,7 +25,8 @@ public class Email {
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
         String myAccountEmail = "jakubwrobel22@gmail.com";
-        String password = "SALezjanie123";
+//      ADD PASSWORD HERE
+        String password = "";
 
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
