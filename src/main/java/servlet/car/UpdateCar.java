@@ -61,7 +61,7 @@ public class UpdateCar extends HttpServlet {
             Car car = new Car.Builder(model, brand, date, idNumber, client).nextCheckupDate(date2).build();
             car.setId(check);
             if (carDAO.updateCar(car)) {
-                request.setAttribute("message", "Samochód został zaaktualizowany");
+                request.setAttribute("message", "Car has been updated");
                 request.getRequestDispatcher("/jsp/car/updateCar2.jsp").forward(request, response);
             }
 
@@ -71,7 +71,7 @@ public class UpdateCar extends HttpServlet {
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
             cars = CarDAO.read(check);
             car = cars.get(0);
             clients = ClientDAO.allClients();

@@ -33,19 +33,17 @@ public class CreateClient extends HttpServlet {
 
         try {
             date = Date.valueOf(birthDate);
-
             Client client = new Client.Builder(firstName, lastName, date).build();
 
             if (clientDAO.createClient(client)) {
-                request.setAttribute("message", "Klient został dodany");
+                request.setAttribute("message", "Client has been created");
                 request.getRequestDispatcher("/jsp/client/createClient.jsp").forward(request, response);
             }
-
 
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
             request.getRequestDispatcher("/jsp/employee/createEmployee.jsp").forward(request, response);
         }
     }

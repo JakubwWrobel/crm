@@ -25,10 +25,10 @@
 </header>
 <%--https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_filters_table&stacked=h--%>
 <main>
-    <c:set var="id" scope="request" value="${1}"/>
+    <c:set var="id" value="${1}"/>
     <div class="row col-md-9">
         <table class="table table-striped table-bordered table-sm table-hover">
-            <tr class="table-row">
+            <tr class="table-ro">
                 <th scope="col"> #</th>
                 <th scope="col"> ID </th>
                 <th scope="col">Date Received</th>

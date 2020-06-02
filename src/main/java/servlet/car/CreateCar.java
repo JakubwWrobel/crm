@@ -59,14 +59,14 @@ public class CreateCar extends HttpServlet {
             Car car = new Car.Builder(model, brand, date, idNumber, client).nextCheckupDate(date2).build();
 
             if (carDAO.createCar(car)) {
-                request.setAttribute("message", "Samochód został dodany");
+                request.setAttribute("message", "Car has been created");
                 request.getRequestDispatcher("/jsp/car/createCar.jsp").forward(request, response);
             }
 
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
             request.getRequestDispatcher("/jsp/car/createCar.jsp").forward(request, response);
         } catch (NullPointerException e) {
         //SPRAWDZIĆ JAK WYWALA BŁĄD?

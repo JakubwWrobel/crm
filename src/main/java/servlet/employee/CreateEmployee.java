@@ -34,7 +34,7 @@ public class CreateEmployee extends HttpServlet {
         Employee employee = new Employee.Builder(name, surname, hourly).address(address).note(note).telNumber(phone).build();
 
             if (employeeDAO.createEmployee(employee)) {
-                request.setAttribute("message", "Pracownik został dodany");
+                request.setAttribute("message", "Employee has been created");
                 request.getRequestDispatcher("/jsp/employee/createEmployee.jsp").forward(request, response);
             }
 
@@ -43,11 +43,11 @@ public class CreateEmployee extends HttpServlet {
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
             request.getRequestDispatcher("/jsp/employee/createEmployee.jsp").forward(request, response);
         } catch (NumberFormatException e){
             LOG.error(" Tel-Number is incorrect " + e.getMessage());
-            request.setAttribute("message", "Numer telefonu powinien składać się z 9 cyfr");
+            request.setAttribute("message", "Phone number should have 9 digits");
             request.getRequestDispatcher("/jsp/employee/createEmployee.jsp").forward(request, response);
         }
     }

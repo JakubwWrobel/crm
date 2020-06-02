@@ -13,7 +13,7 @@ import java.util.Properties;
 public class Email {
     public static void sendMail(String recipient, Car car) {
 
-        System.out.println("Preparing mail to send");
+        System.out.println("Preparing an mail to send");
         Properties properties = new Properties();
 
         properties.put("mail.smtp.auth", "true");
@@ -49,8 +49,8 @@ public class Email {
         try {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-            message.setSubject("Przegląd samochodu: " + car.getIdNumber());
-            message.setText(String.format("Dzień dobry,\n Przypominamy o umówiony przeglądzie samochodu:  %sw dniu: %s w razie zmiany terminu lub brakumożliwości pojawienia się w terminie, prosimy o kontakt telefoniczny. \nZakład Samochodowy, xxx",
+            message.setSubject("Car Check-up: " + car.getIdNumber());
+            message.setText(String.format("Hello,\nI am contacting you because you have upcoming car checkup of: %s on %s. In case you want to postpone the visit please contact your car advisor. \nRegards, Car Workshop",
                     car.getIdNumber(), car.getNextCheckupDate()));
             return message;
         } catch (MessagingException e) {

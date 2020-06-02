@@ -47,7 +47,7 @@ public class UpdateClient extends HttpServlet {
             Client client = new Client.Builder(firstName, lastName, date).build();
             client.setId(id);
             if (clientDAO.updateClient(client)) {
-                request.setAttribute("message", "Klient został zaaktualizowany");
+                request.setAttribute("message", "Client has been updated ");
                 session.invalidate();
                 request.getRequestDispatcher("/jsp/client/updateClient2.jsp").forward(request, response);
             }
@@ -56,7 +56,7 @@ public class UpdateClient extends HttpServlet {
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
             request.getRequestDispatcher("/jsp/client/updateClient2.jsp").forward(request, response);
         }
 

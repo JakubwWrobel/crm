@@ -1,10 +1,10 @@
-package servlet.client;
+package servlet.order;
 
 import additionals.Communication;
 import dao.ClientDAO;
-import dao.EmployeeDAO;
+import dao.OrderDAO;
 import model.Client;
-import model.Employee;
+import model.Order;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +17,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "DeleteClient", urlPatterns = "/deleteclient")
-public class DeleteClient extends HttpServlet {
+@WebServlet(name = "DeleteOrder", urlPatterns = "/deleteorder")
+public class DeleteOrder extends HttpServlet {
     private Integer id = null;
-    private List<Client> clients = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
     private Map<String, Object> map = new HashMap<>();
-    private Client client;
+    private Order order;
     boolean isValid = false;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,24 +31,26 @@ public class DeleteClient extends HttpServlet {
         id = Integer.parseInt(request.getParameter("id")); // this is your data sent from client
         map.clear();
         isValid = false;
-        clients = ClientDAO.read(id);
-        client = clients.get(0);
-        if (ClientDAO.validationClientOrders(client)) {
-
-            isValid = false;
-//            map.put()
-        } else if (ClientDAO.deleteClient(client)) {
+        orders = OrderDAO.read(id);
+        order = orders.get(0);
+        if (OrderDAO.deleteOrder(order)) {
             isValid = true;
             map.put("id", id);
+        } else {
+            isValid = false;
+
         }
         map.put("isValid", isValid);
         Communication.write(response, map);
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        clients = ClientDAO.allClients();
-        request.setAttribute("clients", clients);
-        request.getRequestDispatcher("/jsp/client/deleteClient.jsp").forward(request, response);
+
+        orders = OrderDAO.allOrders();
+        request.setAttribute("orders", orders);
+
+        request.getRequestDispatcher("/jsp/order/deleteOrder.jsp").forward(request, response);
 
     }
 }

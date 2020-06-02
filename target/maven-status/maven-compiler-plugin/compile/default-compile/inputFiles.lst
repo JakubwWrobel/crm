@@ -14,6 +14,7 @@
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/client/DeleteClient.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/order/UpdateOrder.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/Test.java
+/home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/order/DeleteOrder.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/model/Car.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/TestConnection.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/servlet/employee/ShowAllEmployees.java
@@ -32,3 +33,4 @@
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/reports/EmailNotification.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/additionals/TestMail.java
 /home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/dao/ClientDAO.java
+/home/kuba/JAVA_COURSE/JAVA_1/crm/src/main/java/reports/WorkingHours.java

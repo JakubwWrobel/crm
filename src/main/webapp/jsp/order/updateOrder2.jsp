@@ -30,18 +30,18 @@
         <div class="form-row">
 
             <div class="form-group col-md-3">
-                <label for="dateReceived"> Podaj Datę Otrzymania </label>
+                <label for="dateReceived"> Provide Received Date </label>
                 <input type="date" class="form-control " id="dateReceived" name="dateReceived"
                        value="${fn:escapeXml(order.dateReceived)}" required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="problemDes"> Podaj Opis Problemu </label>
+                <label for="problemDes"> Describe the Problem</label>
                 <input type="text" class="form-control " id="problemDes" name="problemDes"
                        value="${fn:escapeXml(order.problemDes)}" required>
             </div>
 
             <div class="form-group col-md-3">
-                <label for="car"> Wybierz Samochód </label>
+                <label for="car"> Choose a Car</label>
                 <select class="form-control" id="car" name="car" data-live-search="true" required>
                     <c:forEach items="${cars}" var="car">
                         <option value="${car.id}">${car.idNumber}</option>
@@ -53,7 +53,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="employeeAssigned"> Przypisz Pracownika</label>
+                <label for="employeeAssigned"> Assign employee </label>
                 <select class="form-control" id="employeeAssigned" name="employeeAssigned" data-live-search="true"
                         required>
                     <c:forEach items="${employees}" var="employee">
@@ -64,38 +64,38 @@
                 <span class="help-inline">Start typing to find an employee</span>
             </div>
             <div class="form-group col-md-3">
-                <label for="plannedDateStartRepair"> Podaj Planowaną Datę Rozpoczęcia Naprawy </label>
+                <label for="plannedDateStartRepair"> Provide Planned Repair Start Date </label>
                 <input type="date" class="form-control" id="plannedDateStartRepair" name="plannedDateStartRepair"
                        value="${fn:escapeXml(order.plannedDateStartRepair)}" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="status"> Podaj Status </label>
+                <label for="status"> Provide Status </label>
                 <select class="form-control" id="status" name="status" data-live-search="true">
-                    <option value="RECEIVED"> Otrzymane</option>
-                    <option value="INPROGRESS"> W trakcie</option>
-                    <option value="COST_APPROVED"> Koszty zaakceptowane</option>
-                    <option value="READY_TO_PICK"> Gotowe do odbioru</option>
-                    <option value="RESIGNED"> Klient zrezygnował</option>
-                    <option value="DONE"> Zlecenie wykonane</option>
+                    <option value="RECEIVED"> Received </option>
+                    <option value="INPROGRESS"> In Progress </option>
+                    <option value="COST_APPROVED"> Cost Approved </option>
+                    <option value="READY_TO_PICK"> Ready to Pick </option>
+                    <option value="RESIGNED"> Client Resigned  </option>
+                    <option value="DONE"> Done </option>
 
                 </select>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="dateStartRepair">Podaj Datę Rozpoczęcia Naprawy</label>
+                <label for="dateStartRepair"> Provide Start Repair Date </label>
                 <input type="date" id="dateStartRepair" class="form-control" name="dateStartRepair"
                        value="${fn:escapeXml(order.dateStartRepair)}">
             </div>
 
             <div class="form-group col-md-3">
-                <label for="resolutionDes">Podaj Przebieg Naprawy</label>
+                <label for="resolutionDes"> Provide Resolution </label>
                 <input type="test" class="form-control" id="resolutionDes" name="resolutionDes"
                        value="${fn:escapeXml(order.resolutionDes)}">
             </div>
 
             <div class="form-group col-md-3">
-                <label for="costOfItems">Koszt Części</label>
+                <label for="costOfItems"> Cost of Items </label>
                 <input type="number" class="form-control" step="0.01" placeholder='0.00' id="costOfItems"
                        name="costOfItems"
                        value="${fn:escapeXml(order.costOfItems)}">
@@ -103,7 +103,7 @@
         </div>
         <div class="form-row">
             <div class="form-row col-md-3">
-                <label for="workHours">Ilośc godzin pracy</label>
+                <label for="workHours"> Hours Spent</label>
                 <input class="form-control" id="workHours" name="workHours" step="0.01" type="number" value="${fn:escapeXml(order.workHours)}">
             </div>
         </div>

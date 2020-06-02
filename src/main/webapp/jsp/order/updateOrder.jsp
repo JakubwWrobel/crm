@@ -34,12 +34,13 @@
                 <th scope="col">Date Received</th>
                 <th scope="col">Planned Start Date </th>
                 <th scope="col">Repair Start Date</th>
+                <th scope="col">Car</th>
+                <th scope="col">Client</th>
                 <th scope="col">Employee Assigned</th>
                 <th scope="col">Problem Description</th>
                 <th scope="col">Status</th>
                 <th scope="col">Cost Of Repair</th>
                 <th scope="col">Cost Of Items</th>
-                <th scope="col">Resolution</th>
                 <th scope="col">Work Hours</th>
                 <th scope="col">Hourly Cost Of Employee</th>
             </tr>
@@ -52,12 +53,13 @@
                     <td>${order.dateReceived}</td>
                     <td>${order.plannedDateStartRepair}</td>
                     <td>${order.dateStartRepair}</td>
+                    <td>${order.car.idNumber}</td>
+                    <td>${order.car.client.firstName} ${order.car.client.lastName}</td>
                     <td>${order.employeeAssigned.id}</td>
                     <td>${order.problemDes}</td>
                     <td>${order.status.name()}</td>
                     <td>${order.costRepair}</td>
                     <td>${order.costOfItems}</td>
-                    <td>${order.resolutionDes}</td>
                     <td>${order.workHours}</td>
                     <td>${order.employeeAssigned.hourlyCost}</td>
 

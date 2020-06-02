@@ -54,8 +54,15 @@
                     </tr>
                 </c:forEach>
             </table>
-            <button id="emailBtn" type="submit" class="btn btn-primary btn-md active" aria-pressed="true">Submit
-            </button>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <button id="emailBtn" class="btn btn-primary active" type="submit"> Submit </button>
+                </div>
+            </div>
+            <div class="row col-md-9">
+                <div class="form-group col-md-9">${empty message ? "" : message}</div>
+            </div>
         </div>
     </form>
 </main>

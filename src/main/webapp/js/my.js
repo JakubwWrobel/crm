@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-
         var tabb = document.querySelectorAll("#tabb")
 
 // AUTOINCREMENT
@@ -29,11 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         /*    //send emails
             let submitBtn = $("#emailBtn");
-
             function sendEmails() {
-
             }
-
             submitBtn.on("click", sendEmails)*/
 
 
@@ -53,12 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let modalBody = $("#deleteModalBody")
             modalBody.html("Are you sure you want to delete: " + name + " " + name2);
 
-            /*
-              let yesBtn = $("#yesButton")
-              yesBtn.on("click", hideModal)
-              function hideModal() {
-              $(this).data("dismiss", "modal");
-                    }*/
+
 
             if ($('#yesButton').length > 0) {
 
@@ -112,26 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             data: toSend,
                             success: function (data) {
                                 if (data.isValid) {
-                                    alert("Client and all cars he owned have been deleted")
-                                    rowClicked.remove()
-                                } else {
-                                    alert("Car is assigned to the active order, please close the order to proceed")
-                                    $("#displayName").html("Client has active orders, please delete order first")
-                                }
-                            }
-                        });
-
-                    })
-                } else if (id === "car") {
-                    yesBtn.on("click", function (event) {
-                        event.preventDefault();
-                        $.ajax({
-                            url: "http://localhost:8080/deletecar",
-                            type: "POST",
-                            dataType: "json",
-                            data: toSend,
-                            success: function (data) {
-                                if (data.isValid) {
                                     alert("Car and assigned client have been deleted")
                                     rowClicked.remove()
                                 } else {
@@ -142,96 +113,55 @@ document.addEventListener("DOMContentLoaded", function () {
                         });
 
                     })
+
+                } else if (id === "order") {
+                    yesBtn.on("click", function (event) {
+                        event.preventDefault();
+                        $.ajax({
+                            url: "http://localhost:8080/deleteorder",
+                            type: "POST",
+                            dataType: "json",
+                            data: toSend,
+                            success: function (data) {
+                                if (data.isValid) {
+                                    alert("Order has been deleted and canceled")
+                                    rowClicked.remove()
+                                } else {
+                                    alert("Order cannot be deleted")
+                                    $("#displayName").html("Order cannot be deleted")
+
+                                }
+                            }
+                        });
+
+                    })
                 }
             }
         }
-            let tabDelete = $("tr")
-            tabDelete.on("click", showModalToDelete)
 
-            /*
-                function sendHttpRequest(event) {
-                    e.preventDefault();
-                    $.ajax({
-                        url: "http://localhost:8080/deleteemployee",
-                        type: "POST",
-                        dataType: "json",
-                        data: {"id": 1},
-                        success: function (data) {
-                            if (data.isValid) {
-                                $("#displayName").html("COrrect")
-                                console.log("correct_LOG")
-                            } else {
-                                $("#displayName").html("Please correct")
-                                alert("Please correct!")
-                            }
-
-                        }
-                    });
-                    return false;
+        let tabDelete = $("tr")
+        tabDelete.on("click", showModalToDelete)
 
 
-                    //
-                    //takes global from showModalToDeleteEm
-                    // let posting = $.post("/deleteemployee", {id: idEm});
-                    // posting.done(function (data) {
-                    //     alert("DATA LOADED " + data)
-                    // })
+
+        //SEARCHING BAR
+        let searching = $("#searching");
+        let allHrefs = $("#mainNavbar a");
+
+        searching.on("submit", function (event) {
+            let findBarVal = $("#findBar").val().toLowerCase();
+            for (let i = 0; i < allHrefs.length; i++) {
+                if (findBarVal === allHrefs.eq(i).attr('href').substring(1)) {
+                    window.location.replace(allHrefs.eq(i).attr('href'))
                 }
-            */
+            }
+            event.preventDefault()
+        })
 
-            // delBtn.on("click", showModalToDeleteEm)
-
-            /*
-                function sendHttpRequest(method, url, data) {
-                    const promise = new Promise(function (resolve, reject) {
-                        let xhr = new XMLHttpRequest();
-                        xhr.open(method, url);
-                        // Replace parse statement later on
-                        xhr.responseType = 'json';
-                        if (data) {
-                            xhr.setRequestHeader("Content-Type", "application/json");
-                        }
-                        xhr.onload = function () {
-                            resolve(xhr.response)
-                        }
-                        xhr.send(JSON.stringify(data));
-                    });
-                    return promise;
-                }
-
-                function deleteEm() {
-                    sendHttpRequest('GET', "https://reqres.in/api/users").then(responseData => {
-                        console.log(responseData)
-                    })
-                }
-
-                function sendData() {
-                    sendHttpRequest('POST', 'http://localhost:8080/deleteemployee', {
-                            cll
-                        }
-                    )
-                }
-            */
-
-
-//between HTML elements;
-// localStorage.setItem("start", tabDelete)
-// window.document.location = '/deleteemployee'
-// https://www.youtube.com/watch?v=GNZg1KRsWuU
-
-
-            /*XML HTTP REQUEST
-            let xmlHttp;
-
-            xmlHttp = new XMLHttpRequest()
-
-            let params = "uname=" + surname2
-            console.log(params)
-            xmlHttp.open('POST', '/deleteemployee', true)
-            xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-            xmlHttp.send(params)
-            */
-
-
+        //Work Hour List Show/Hide
+        let whlist = $("#whlist tr");
+        if(whlist.length < 2){
+           whlist.css("display", "none");
+        }
     }
 )

@@ -27,32 +27,32 @@
         <div class="form-row">
 
             <div class="form-group col-md-3">
-                <label for="name"> Podaj Imię </label>
+                <label for="name"> Provide First Name </label>
                 <input type="text" class="form-control " id="name" name="name" value="${fn:escapeXml(employee.firstName)}" required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="surname"> Podaj Nazwisko </label>
+                <label for="surname"> Provide Last Name </label>
                 <input type="text" class="form-control " id="surname" name="surname" value="${fn:escapeXml(employee.lastName)}" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="address"> Podaj Adres </label>
+                <label for="address"> Provide Address </label>
                 <input type="text" class="form-control " id="address" name="address" value="${fn:escapeXml(employee.address)}" required>
 
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6 offset-10">
-                <label for="note"> Dodatkowe Informacje </label>
+                <label for="note"> Additional Information </label>
                 <input type="text" class="form-control" id="note" name="note" value="${fn:escapeXml(employee.note)}" >
             </div>
             <div class="form-group col-md-3">
-                <label for="phone"> Numer Telefonu </label>
+                <label for="phone"> Phone Number </label>
                 <input type="number" class="form-control" id="phone" min="0" name="phone" value="${fn:escapeXml(employee.telNumber)}" >
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="hourly"> Podaj Stawkę Godzinową </label>
+                <label for="hourly"> Hourly Cost </label>
                 <input type="number" class="form-control"  id="hourly" name="hourly" value="${fn:escapeXml(employee.hourlyCost)}" required>
             </div>
         </div>

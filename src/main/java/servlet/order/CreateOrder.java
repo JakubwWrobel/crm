@@ -64,14 +64,14 @@ public class CreateOrder extends HttpServlet {
             Order order = new Order.Builder(dateReceivedL, plannedDateStartRepairL, problemDes, status, car, employee).costOfHour(costOfHour).build();
 
             if (orderDAO.createOrder(order)) {
-                request.setAttribute("message", "Zamówienie został dodane");
+                request.setAttribute("message", "Order has been created");
                 request.getRequestDispatcher("/jsp/order/createOrder.jsp").forward(request, response);
             }
 
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
             request.getRequestDispatcher("/jsp/order/createOrder.jsp").forward(request, response);
         }
     }

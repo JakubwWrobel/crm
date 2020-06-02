@@ -95,20 +95,18 @@ public class UpdateOrder extends HttpServlet {
         costOfRepair = costOfHour * workhours + costOfItems;
 
         try {
-
             Order order = new Order.Builder(dateReceivedL, plannedDateStartRepairL, problemDes, status, car, employee).costOfHour(costOfHour).costOfItems(costOfItems).dateStartRepair(dateStartRepairL).resolutionDes(resolutionDes).workHours(workhours).costRepair(costOfRepair).build();
             session = request.getSession();
             order.setId(id);
-
             if (orderDAO.updateOrder(order)) {
-                request.setAttribute("message", "Zamówienie został zaaktualizowane");
+                request.setAttribute("message", "Order has been updated");
                 request.getRequestDispatcher("/jsp/order/updateOrder2.jsp").forward(request, response);
             }
             session.invalidate();
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value already exists in DB: " + error);
 
             session = request.getSession();
             id = (int) session.getAttribute("id");

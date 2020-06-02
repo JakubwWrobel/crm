@@ -22,6 +22,7 @@ public class OrderDAO {
     private static final String SHOW_ALL_ORDERS = "SELECT * FROM orders";
     private static final String FIND_ORDER_BY_ID = "SELECT * FROM orders WHERE id = ?";
     private static final String UPDATE_ORDER = "UPDATE orders SET dateReceived = ?,  plannedDateStartRepair = ?,  dateStartRepair = ?,  employeeAssigned = ?,  problemDes = ?,  resolutionDes = ?,  status= ?, car= ?,  costRepair= ?,  costOfItems= ?,  workHours= ?,  costOfHour= ?  WHERE id = ?";
+    private static final String DELETE_ORDER_BY_ID = "DELETE FROM orders WHERE id = ?";
     private static PreparedStatement statement;
     private static List<Order> orders = new ArrayList<>();
     private static List<Car> cars = new ArrayList<>();
@@ -43,6 +44,20 @@ public class OrderDAO {
     private static double costRepair;
     private static double workHours;
 
+
+    public static boolean deleteOrder(Order order) {
+        try (Connection connection = DbUtil.getConnection()) {
+            statement = connection.prepareStatement(DELETE_ORDER_BY_ID);
+            statement.setLong(1, order.getId());
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.getErrorCode();
+            e.printStackTrace();
+            System.out.println("Błąd połączenia z bazą");
+            return false;
+        }
+    }
 
     public boolean createOrder(Order order) throws MyBusinessException {
         try (Connection connection = DbUtil.getConnection()) {

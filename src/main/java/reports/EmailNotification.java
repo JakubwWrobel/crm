@@ -24,7 +24,7 @@ public class EmailNotification extends HttpServlet {
             System.out.println(cars.get(i).getClient().getLastName());
         }
 
-        request.setAttribute("message", "Przypomnienie zostało wysłane do poniższych klientów");
+        request.setAttribute("message", "Notification has been sent to clients");
         request.setAttribute("cars", cars);
         request.getRequestDispatcher("/jsp/reports/emailNotification.jsp").forward(request, response);
 

@@ -24,8 +24,8 @@
 </header>
 <main>
     <form action="${pageContext.request.contextPath}/createclient" method="post" class="form">
+st
         <div class="form-row">
-
             <div class="form-group col-md-3">
                 <label for="firstName"> Podaj Imię </label>
                 <input type="text" class="form-control " id="firstName" name="firstName" required>
@@ -37,7 +37,6 @@
             <div class="form-group col-md-3">
                 <label for="birthDate"> Podaj Datę Urodzenia </label>
                 <input type="date" class="form-control " id="birthDate" name="birthDate" required>
-
             </div>
         </div>
         <div class="form-row">

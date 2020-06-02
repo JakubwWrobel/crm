@@ -50,7 +50,7 @@ public class UpdateEmployee extends HttpServlet {
             employee = new Employee.Builder(name, surname, hourly).address(address).note(note).telNumber(phone).build();
             employee.setId(id);
             if (employeeDAO.updateEmployee(employee)) {
-                request.setAttribute("message", "Pracownik został zaaktualizowany");
+                request.setAttribute("message", "Employee has been updated");
                 request.getRequestDispatcher("/jsp/employee/updateEmployee.jsp").forward(request, response);
             }
 
@@ -58,7 +58,7 @@ public class UpdateEmployee extends HttpServlet {
         } catch (MyBusinessException e) {
             LOG.error("This is cause of Exception: " + e.getCause());
             error = ValidationDB.validation(e.getMessage());
-            request.setAttribute("message", "Podana wartość istnieje już w systemie: " + error);
+            request.setAttribute("message", "Following value exists already in DB: " + error);
             employees = EmployeeDAO.allEmployees();
             request.setAttribute("employees", employees);
             request.getRequestDispatcher("/jsp/employee/updateEmployee2.jsp").forward(request, response);
@@ -67,7 +67,7 @@ public class UpdateEmployee extends HttpServlet {
             employee = employees.get(0);
             request.setAttribute("employee", employee);
             LOG.error(" Tel-Number is incorrect " + e.getMessage());
-            request.setAttribute("message", "Numer telefonu powinien składać się z 9 cyfr");
+            request.setAttribute("message", "Phone number should have 9 digits");
             request.getRequestDispatcher("/jsp/employee/updateEmployee2.jsp").forward(request, response);
         }
     }

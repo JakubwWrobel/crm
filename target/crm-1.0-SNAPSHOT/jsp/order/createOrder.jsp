@@ -30,16 +30,16 @@
         <div class="form-row">
 
             <div class="form-group col-md-3">
-                <label for="dateReceived"> Podaj Datę Otrzymania </label>
+                <label for="dateReceived"> Provide Received Date </label>
                 <input type="date" class="form-control " id="dateReceived" name="dateReceived" required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="problemDes"> Podaj Opis Problemu </label>
+                <label for="problemDes"> Describe the Problem </label>
                 <input type="text" class="form-control " id="problemDes" name="problemDes" required>
             </div>
 
             <div class="form-group col-md-3">
-                <label for="car"> Wybierz Samochód </label>
+                <label for="car"> Choose a Car </label>
                 <select class="form-control" id="car" name="car" data-live-search="true" required>
                     <c:forEach items="${cars}" var="car">
                         <option value="${car.id}" ><c:out value="${car.idNumber}"></c:out></option>
@@ -51,7 +51,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="employeeAssigned"> Przypisz Pracownika</label>
+                <label for="employeeAssigned"> Assign employee </label>
                 <select class="form-control" id="employeeAssigned" name="employeeAssigned" data-live-search="true" required>
                     <c:forEach items="${employees}" var="employee">
                         <option value="${employee.id}"><c:out value="${employee.firstName} ${employee.lastName}"></c:out></option>
@@ -60,19 +60,19 @@
                 <span class="help-inline">Start typing to find an employee</span>
             </div>
             <div class="form-group col-md-3">
-                <label for="plannedDateStartRepair"> Podaj Planowaną Datę Rozpoczęcia Naprawy </label>
+                <label for="plannedDateStartRepair"> Provide Planned Repair Start Date </label>
                 <input type="date" class="form-control" id="plannedDateStartRepair" name="plannedDateStartRepair"
                        required>
             </div>
             <div class="form-group col-md-3">
-                <label for="status"> Podaj Status </label>
+                <label for="status"> Provide Status </label>
                 <select class="form-control" id="status" name="status" data-live-search="true">
-                        <option value="RECEIVED"> Otrzymane </option>
-                        <option value="INPROGRESS"> W trakcie </option>
-                        <option value="COST_APPROVED"> Koszty zaakceptowane </option>
-                        <option value="READY_TO_PICK"> Gotowe do odbioru </option>
-                        <option value="RESIGNED"> Klient zrezygnował </option>
-                        <option value="DONE"> Zlecenie wykonane </option>
+                        <option value="RECEIVED"> Received </option>
+                        <option value="INPROGRESS"> In Progress </option>
+                        <option value="COST_APPROVED"> Cost Approved </option>
+                        <option value="READY_TO_PICK"> Ready to Pick </option>
+                        <option value="RESIGNED"> Client Resigned  </option>
+                        <option value="DONE"> Done </option>
 
                 </select>
             </div>
