@@ -24,24 +24,23 @@
 </header>
 <main>
     <form action="${pageContext.request.contextPath}/createclient" method="post" class="form">
-st
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="firstName"> Podaj Imię </label>
+                <label for="firstName"> Provide First Name</label>
                 <input type="text" class="form-control " id="firstName" name="firstName" required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="lastName"> Podaj Nazwisko </label>
+                <label for="lastName"> Provide Last Name </label>
                 <input type="text" class="form-control " id="lastName" name="lastName" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="birthDate"> Podaj Datę Urodzenia </label>
+                <label for="birthDate"> Provide Birth Date</label>
                 <input type="date" class="form-control " id="birthDate" name="birthDate" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <button class="btn btn-primary" type="submit"> Submit form </button>
+                <button class="btn btn-primary" type="submit"> Submit form</button>
             </div>
         </div>
         <div class="form-row">

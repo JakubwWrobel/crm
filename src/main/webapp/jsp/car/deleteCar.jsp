@@ -30,13 +30,13 @@
         <table class="table table-striped table-bordered table-sm table-hover">
             <tr class="table-ro">
                 <th scope="col"> #</th>
-                <th scope="col"> ID Number </th>
-                <th scope="col"> Model </th>
-                <th scope="col"> Brand </th>
-                <th scope="col"> Date of Production </th>
-                <th scope="col"> Next Checkup Date </th>
-                <th scope="col"> Client </th>
-                <th scope="col"> Delete </th>
+                <th scope="col"> ID Number</th>
+                <th scope="col"> Model</th>
+                <th scope="col"> Brand</th>
+                <th scope="col"> Date of Production</th>
+                <th scope="col"> Next Checkup Date</th>
+                <th scope="col"> Client</th>
+                <th scope="col"> Delete</th>
             </tr>
 
             <c:forEach items="${cars}" var="car">

@@ -28,37 +28,42 @@
 
             <div class="form-group col-md-3">
                 <label for="name"> Provide First Name </label>
-                <input type="text" class="form-control " id="name" name="name" value="${fn:escapeXml(employee.firstName)}" required>
+                <input type="text" class="form-control " id="name" name="name"
+                       value="${fn:escapeXml(employee.firstName)}" required>
             </div>
             <div class="form-group col-md-3 ">
                 <label for="surname"> Provide Last Name </label>
-                <input type="text" class="form-control " id="surname" name="surname" value="${fn:escapeXml(employee.lastName)}" required>
+                <input type="text" class="form-control " id="surname" name="surname"
+                       value="${fn:escapeXml(employee.lastName)}" required>
             </div>
             <div class="form-group col-md-3">
                 <label for="address"> Provide Address </label>
-                <input type="text" class="form-control " id="address" name="address" value="${fn:escapeXml(employee.address)}" required>
+                <input type="text" class="form-control " id="address" name="address"
+                       value="${fn:escapeXml(employee.address)}" required>
 
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6 offset-10">
                 <label for="note"> Additional Information </label>
-                <input type="text" class="form-control" id="note" name="note" value="${fn:escapeXml(employee.note)}" >
+                <input type="text" class="form-control" id="note" name="note" value="${fn:escapeXml(employee.note)}">
             </div>
             <div class="form-group col-md-3">
                 <label for="phone"> Phone Number </label>
-                <input type="number" class="form-control" id="phone" min="0" name="phone" value="${fn:escapeXml(employee.telNumber)}" >
+                <input type="number" class="form-control" id="phone" min="0" name="phone"
+                       value="${fn:escapeXml(employee.telNumber)}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="hourly"> Hourly Cost </label>
-                <input type="number" class="form-control"  id="hourly" name="hourly" value="${fn:escapeXml(employee.hourlyCost)}" required>
+                <input type="number" class="form-control" id="hourly" name="hourly"
+                       value="${fn:escapeXml(employee.hourlyCost)}" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <button class="btn btn-primary" type="submit"> Submit form </button>
+                <button class="btn btn-primary" type="submit"> Submit form</button>
             </div>
         </div>
         <div class="form-row">

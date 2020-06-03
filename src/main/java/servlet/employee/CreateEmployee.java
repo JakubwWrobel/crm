@@ -35,6 +35,7 @@ public class CreateEmployee extends HttpServlet {
 
             if (employeeDAO.createEmployee(employee)) {
                 request.setAttribute("message", "Employee has been created");
+                LOG.info("Employee has been created", "12");
                 request.getRequestDispatcher("/jsp/employee/createEmployee.jsp").forward(request, response);
             }
 

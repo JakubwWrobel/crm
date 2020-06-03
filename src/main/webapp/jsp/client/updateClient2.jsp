@@ -25,24 +25,27 @@
 <main>
     <form action="${pageContext.request.contextPath}/updateclient" method="post" class="form">
         <div class="form-row">
-<%--            <input id="userName" name="userName" value="${fn:escapeXml(u.username)}">--%>
+            <%--            <input id="userName" name="userName" value="${fn:escapeXml(u.username)}">--%>
             <div class="form-group col-md-3">
-                <label for="firstName"> Podaj Imię </label>
-                <input type="text" class="form-control " id="firstName" name="firstName" value="${fn:escapeXml(client.firstName)}" required>
+                <label for="firstName"> Provide First Name</label>
+                <input type="text" class="form-control " id="firstName" name="firstName"
+                       value="${fn:escapeXml(client.firstName)}" required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="lastName"> Podaj Nazwisko </label>
-                <input type="text" class="form-control " id="lastName" name="lastName" value="${fn:escapeXml(client.lastName)}" required>
+                <label for="lastName"> Provide Last Name </label>
+                <input type="text" class="form-control " id="lastName" name="lastName"
+                       value="${fn:escapeXml(client.lastName)}" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="birthDate"> Podaj Datę Urodzenia </label>
-                <input type="date" class="form-control " id="birthDate" name="birthDate" value="${fn:escapeXml(client.birthDate)}" required>
+                <label for="birthDate"> Provide Birth Date </label>
+                <input type="date" class="form-control " id="birthDate" name="birthDate"
+                       value="${fn:escapeXml(client.birthDate)}" required>
 
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <button class="btn btn-primary" type="submit"> Submit form </button>
+                <button class="btn btn-primary" type="submit"> Submit form</button>
             </div>
         </div>
         <div class="form-row">

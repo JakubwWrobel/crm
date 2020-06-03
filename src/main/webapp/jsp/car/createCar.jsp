@@ -30,30 +30,30 @@
         <div class="form-row">
 
             <div class="form-group col-md-3">
-                <label for="model"> Podaj Model </label>
+                <label for="model"> Provide Model</label>
                 <input type="text" class="form-control " id="model" name="model" required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="brand"> Podaj Markę </label>
+                <label for="brand"> Provide Brand</label>
                 <input type="text" class="form-control " id="brand" name="brand" required>
             </div>
             <div class="form-group col-md-3">
-                <label for="date"> Podaj Date Produkcji </label>
+                <label for="date"> Provide Production Date </label>
                 <input type="date" class="form-control " id="date" name="date" required>
 
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="id"> Podaj Numer Rejestracyjny</label>
+                <label for="id"> Provide ID Number</label>
                 <input type="text" class="form-control" id="id" name="id" required>
             </div>
            <div class="form-group col-md-3">
-                <label for="date2"> Podaj Datę Następnego Przeglądu </label>
+                <label for="date2"> Provide Next Checkup Date </label>
                 <input type="date" class="form-control" id="date2" name="date2" >
             </div>
             <div class="form-group col-md-3">
-                <label for="clientId"> Wybierz Klienta </label>
+                <label for="clientId"> Choose a Client </label>
                 <select class="form-control" id="clientId" name="clientId" data-live-search="true" required>
                     <c:forEach items="${clients}" var="client">
                         <option value="${client.id}"><c:out value="${client.firstName} ${client.lastName}"></c:out></option>

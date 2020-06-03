@@ -30,33 +30,39 @@
         <div class="form-row">
 
             <div class="form-group col-md-3">
-                <label for="model"> Podaj Model </label>
-                <input type="text" class="form-control " id="model" name="model" value="${fn:escapeXml(car.model)}" required>
+                <label for="model"> Provide Model </label>
+                <input type="text" class="form-control " id="model" name="model" value="${fn:escapeXml(car.model)}"
+                       required>
             </div>
             <div class="form-group col-md-3 ">
-                <label for="brand"> Podaj Markę </label>
-                <input type="text" class="form-control " id="brand" name="brand" value="${fn:escapeXml(car.brand)}" required>
+                <label for="brand"> Provide Brand </label>
+                <input type="text" class="form-control " id="brand" name="brand" value="${fn:escapeXml(car.brand)}"
+                       required>
             </div>
             <div class="form-group col-md-3">
-                <label for="date"> Podaj Date Produkcji </label>
-                <input type="date" class="form-control " id="date" name="date" value="${fn:escapeXml(car.dateProduction)}" required>
+                <label for="date"> Provide Production Date </label>
+                <input type="date" class="form-control " id="date" name="date"
+                       value="${fn:escapeXml(car.dateProduction)}" required>
 
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="idNumber"> Podaj Numer Rejestracyjny</label>
-                <input type="text" class="form-control" id="idNumber" name="idNumber" value="${fn:escapeXml(car.idNumber)}"required>
+                <label for="idNumber"> Provide ID Number</label>
+                <input type="text" class="form-control" id="idNumber" name="idNumber"
+                       value="${fn:escapeXml(car.idNumber)}" required>
             </div>
-           <div class="form-group col-md-3" id="datapicker">
-                <label for="date2"> Podaj Datę Następnego Przeglądu </label>
-                <input data-date-format="dd-mm-yyyy" type="date" class="form-control" id="date2" name="date2" value="${fn:escapeXml(car.nextCheckupDate)}" >
+            <div class="form-group col-md-3" id="datapicker">
+                <label for="date2"> Provide Next Checkup Date </label>
+                <input data-date-format="dd-mm-yyyy" type="date" class="form-control" id="date2" name="date2"
+                       value="${fn:escapeXml(car.nextCheckupDate)}">
             </div>
             <div class="form-group col-md-3">
-                <label for="clientId"> Wybierz Klienta </label>
+                <label for="clientId"> Choose a Client</label>
                 <select class="form-control" id="clientId" name="clientId" data-live-search="true" required>
                     <c:forEach items="${clients}" var="client">
-                        <option value="${client.id}"><c:out value="${client.firstName} ${client.lastName}"></c:out></option>
+                        <option value="${client.id}"><c:out
+                                value="${client.firstName} ${client.lastName}"></c:out></option>
                     </c:forEach>
                 </select>
                 <span class="help-inline">Start typing to find a client</span>
@@ -64,7 +70,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <button class="btn btn-primary" type="submit"> Submit form </button>
+                <button class="btn btn-primary" type="submit"> Submit form</button>
             </div>
         </div>
         <div class="form-row">
